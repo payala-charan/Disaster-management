@@ -1,5 +1,5 @@
 # Render Blueprint: FastAPI backend + managed PostgreSQL (PostGIS).
-# Secrets (LLM_API_KEY) and the frontend origin (CORS_ORIGINS) are set in the Render dashboard ("sync: false").
+# Secrets (GEMINI_API_KEY) are set in the Render dashboard ("sync: false"). CORS_ORIGINS restricts browser origins.
 services:
   - type: web
     name: disaster-response-api
@@ -27,8 +27,8 @@ services:
         value: simulation
       - key: ROUTING_MODE            # live = OSRM public server (falls back to labelled estimates)
         value: live
-      - key: CORS_ORIGINS            # JSON list, e.g. ["https://disaster-response.vercel.app"]
-        sync: false
+      - key: CORS_ORIGINS            # "*" = any origin, or e.g. https://disaster-response.vercel.app
+        value: "*"
 
 databases:
   - name: disaster-db

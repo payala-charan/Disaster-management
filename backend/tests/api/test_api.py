@@ -338,11 +338,27 @@ def test_unexpected_error_returns_json_500_with_cors_headers(app):
     with TestClient(app) as c:
         r = c.get("/api/test-boom", headers={"Origin": "http://localhost:5173"})
     assert r.status_code == 500 and "RuntimeError" in r.json()["detail"]
-    assert r.headers["access-control-allow-origin"] == "http://localhost:5173"
+    assert r.headers["access-control-allow-origin"] == "*"
 
 
-@pytest.mark.parametrize("origin, allowed", [("http://localhost:5174", True), ("http://127.0.0.1:4173", True),
-                                             ("https://evil.example.com", False)])
-def test_cors_allows_any_local_dev_port_only(client, origin, allowed):
+@pytest.mark.parametrize("origin", ["http://localhost:5173", "http://127.0.0.1:4173", "https://my-app.vercel.app"])
+def test_cors_allows_all_origins(client, origin):
     r = client.get("/api/health", headers={"Origin": origin})
-    assert (r.headers.get("access-control-allow-origin") == origin) is allowed
+    assert r.headers.get("access-control-allow-origin") == "*"
+    preflight = client.options("/api/actions/ACT-001/approve", headers={
+        "Origin": origin, "Access-Control-Request-Method": "POST", "Access-Control-Request-Headers": "content-type,x-user"})
+    assert preflight.status_code == 200 and preflight.headers.get("access-control-allow-origin") == "*"
+
+
+def test_cors_restricted_to_configured_origins(session_factory, settings):
+    """With CORS_ORIGINS set to a list, only those origins receive CORS headers."""
+    from fastapi.testclient import TestClient
+
+    from app.main import create_app
+
+    restricted = settings.model_copy(update={"cors_origins": ["http://localhost:5173"]})
+    with TestClient(create_app(settings=restricted, session_factory=session_factory, background_checks=False)) as c:
+        ok = c.get("/api/health", headers={"Origin": "http://localhost:5173"})
+        other = c.get("/api/health", headers={"Origin": "https://evil.example.com"})
+    assert ok.headers.get("access-control-allow-origin") == "http://localhost:5173"
+    assert "access-control-allow-origin" not in other.headers

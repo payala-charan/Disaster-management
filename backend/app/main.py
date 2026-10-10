@@ -58,8 +58,9 @@ def create_app(settings: Settings | None = None, session_factory: Callable[[], S
             log.exception("Unhandled error on %s %s", request.method, request.url.path)
             return JSONResponse(status_code=500, content={"detail": f"Internal server error ({type(exc).__name__}); see server log"})
 
-    app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins,
-                       allow_origin_regex=settings.cors_origin_regex or None, allow_credentials=True,
+    # CORS origins come from CORS_ORIGINS in .env ("*" = any origin). allow_credentials stays False: browsers
+    # reject "*" together with credentials, and the frontend sends no cookies (identity is the X-User header).
+    app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_credentials=False,
                        allow_methods=["*"], allow_headers=["*"])
 
     @app.exception_handler(ServiceError)

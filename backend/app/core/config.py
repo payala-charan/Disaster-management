@@ -1,8 +1,10 @@
+import json
 from functools import lru_cache
 from pathlib import Path
+from typing import Annotated, Any
 
 from pydantic import Field, field_validator
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 # backend/ — anchor .env here so it loads no matter which directory a command is run from.
 BACKEND_DIR = Path(__file__).resolve().parents[2]
@@ -61,9 +63,21 @@ class Settings(BaseSettings):
     duplicate_distance_m: float = 500
     duplicate_time_window_min: int = 60
 
-    cors_origins: list[str] = ["http://localhost:5173"]
-    # Local dev convenience: any localhost port (Vite moves to 5174+ when 5173 is busy). Set to "" in production.
-    cors_origin_regex: str = r"http://(localhost|127\.0\.0\.1)(:\d+)?"
+    # CORS_ORIGINS in .env: "*" = any origin (default), or a comma-separated list
+    # (http://localhost:5173,https://my-app.vercel.app), or a JSON list. NoDecode: we parse it ourselves,
+    # so a plain "*" or comma list works (pydantic-settings would otherwise require JSON for a list).
+    cors_origins: Annotated[list[str], NoDecode] = ["*"]
+
+    @field_validator("cors_origins", mode="before")
+    @classmethod
+    def parse_cors_origins(cls, value: Any) -> Any:
+        if isinstance(value, str):
+            text = value.strip()
+            if text.startswith("["):
+                return json.loads(text)
+            origins = [o.strip().rstrip("/") for o in text.split(",") if o.strip()]
+            return origins or ["*"]  # empty value = not configured = allow all
+        return value
 
     # Services
     reports_dir: Path = BACKEND_DIR / "reports"   # generated PDFs (git-ignored)

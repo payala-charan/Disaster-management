@@ -308,7 +308,7 @@ Identity is a demo `X-User` header recorded in the audit trail. **Real authentic
 | `GEOCODING_NOMINATIM` | `false` | Off because the demo district is fictional |
 | `SHELTER_ALERT_THRESHOLD` | `0.85` | Shelter alert threshold |
 | `DUPLICATE_DISTANCE_M`, `DUPLICATE_TIME_WINDOW_MIN` | `500`, `60` | Duplicate scoring windows |
-| `CORS_ORIGINS` | `["http://localhost:5173"]` | JSON list of allowed frontend origins |
+| `CORS_ORIGINS` | `*` | Allowed frontend origins: `*` = any origin, or a comma-separated list (`http://localhost:5173,https://your-app.vercel.app`) or JSON list |
 | `OVERDUE_CHECK_S` | `60` | Overdue-action check interval |
 | `VITE_API_URL` (frontend) | `http://localhost:8000` | Backend URL (public) |
 | `VITE_USE_MOCKS` (frontend) | `false` | `true` = offline demo with bundled mock data |
@@ -338,7 +338,7 @@ Then open **Simulation → TC-03** (or **Response Planning → Run assessment**)
 
 **Backend + database on Render** ([render.yaml](render.yaml)):
 1. Push the repo to GitHub and create a **Blueprint** in Render from `render.yaml`. This creates the web service and a PostgreSQL database.
-2. In the dashboard set `GEMINI_API_KEY` (optional) and `CORS_ORIGINS` (e.g. `["https://your-app.vercel.app"]`).
+2. In the dashboard set `GEMINI_API_KEY` (optional) and, to restrict browsers to your frontend, `CORS_ORIGINS` (e.g. `https://your-app.vercel.app`; default `*`).
 3. The start command runs `python -m app.db.init_db` (creates PostGIS and the tables) before `uvicorn`.
 4. **Seed once** from the Render shell: `python -m app.db.seed` (or `--reset` to start over).
 5. If your Render Postgres plan does not allow `CREATE EXTENSION postgis`, use **Neon** or **Supabase** (both support PostGIS)
