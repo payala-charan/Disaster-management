@@ -1,0 +1,49 @@
+{
+  "id": "multi_hazard",
+  "title": "Landslide and urban fire alongside the floods",
+  "description": "Adds a landslide in the hillside Zone E and a building fire in the commercial Zone F. The registry has no fire-fighting units, so the system must flag that gap instead of inventing a fire engine.",
+  "test_cases": ["TC-01", "TC-04"],
+  "setup": {
+    "roads": [
+      {
+        "id": "RD-E", "name": "Hill Road", "serves_zone": "Zone E", "status": "open", "provenance": "known",
+        "path": [{"lat": 12.995, "lng": 80.255}, {"lat": 12.97, "lng": 80.2}, {"lat": 12.95, "lng": 80.14}],
+        "updated_at": {"minutes_ago": 30}
+      },
+      {
+        "id": "RD-F", "name": "Market Road", "serves_zone": "Zone F", "status": "open", "provenance": "known",
+        "path": [{"lat": 13.04, "lng": 80.25}, {"lat": 13.065, "lng": 80.265}, {"lat": 13.083, "lng": 80.275}],
+        "updated_at": {"minutes_ago": 30}
+      }
+    ],
+    "shelters": [
+      {"id": "SHL-E", "name": "Hill School Shelter", "location": {"lat": 12.958, "lng": 80.152}, "capacity": 80, "current_occupancy": 10, "status": "open"}
+    ],
+    "resources": [
+      {"id": "MED-001", "type": "medical_team", "name": "Medical Team 1", "base_name": "Response Center 2", "location": {"lat": 12.995, "lng": 80.255}, "status": "available", "capacity": 10, "capabilities": ["first_aid", "triage"]},
+      {"id": "MED-002", "type": "medical_team", "name": "Medical Team 2", "base_name": "Response Center 2", "location": {"lat": 12.9958, "lng": 80.2558}, "status": "available", "capacity": 10, "capabilities": ["first_aid", "triage"]}
+    ]
+  },
+  "steps": [
+    {
+      "at_minute": 0, "kind": "report", "source": "field_team",
+      "note": "Landslide with trapped people. Expect type=landslide, threat 'trapped', people 15.",
+      "text": "Field team 3 reporting: landslide on the Hill Road slope in Zone E. Three houses damaged, 2 people trapped under debris, about 15 residents need relocation. Hill Road is blocked by debris at the bend."
+    },
+    {
+      "at_minute": 2, "kind": "road", "road_id": "RD-E", "status": "closed", "provenance": "known",
+      "road_note": "Blocked by landslide debris (field team 3)",
+      "note": "Known closure confirmed by the field team: ground access to Zone E becomes infeasible."
+    },
+    {
+      "at_minute": 5, "kind": "report", "source": "emergency_call",
+      "note": "Urban fire with an unknown number of people. Maps to type urban_emergency; people_affected must stay null.",
+      "text": "Caller reports a fire in a four-storey commercial building on Market Road, Zone F. Heavy smoke on the upper floors and people trapped on the third floor, number unknown. Caller has breathing difficulty."
+    }
+  ],
+  "expected": [
+    "Landslide incident created in Zone E with threat 'trapped' and access 'inaccessible_by_road' after RD-E closes",
+    "Fire incident created as urban_emergency in Zone F with people_affected=null and 'Confirm number of people affected' in verification",
+    "No fire-fighting resource is invented; the plan notes that fire services are outside this registry and must be contacted"
+  ]
+}

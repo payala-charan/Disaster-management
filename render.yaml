@@ -1,0 +1,37 @@
+# Render Blueprint: FastAPI backend + managed PostgreSQL (PostGIS).
+# Secrets (LLM_API_KEY) and the frontend origin (CORS_ORIGINS) are set in the Render dashboard ("sync: false").
+services:
+  - type: web
+    name: disaster-response-api
+    runtime: python
+    rootDir: backend
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    # init_db creates the PostGIS extension and any missing tables (idempotent); seeding is a one-off step (see README).
+    startCommand: python -m app.db.init_db && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.4
+      - key: DATABASE_URL            # postgres:// is converted to postgresql+psycopg:// by Settings
+        fromDatabase:
+          name: disaster-db
+          property: connectionString
+      - key: LLM_PROVIDER            # gemini | openai | none
+        value: gemini
+      - key: LLM_MODEL
+        value: gemini-3.5-flash-lite
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: WEATHER_MODE            # simulation = scripted demo weather; live = Open-Meteo
+        value: simulation
+      - key: ROUTING_MODE            # live = OSRM public server (falls back to labelled estimates)
+        value: live
+      - key: CORS_ORIGINS            # JSON list, e.g. ["https://disaster-response.vercel.app"]
+        sync: false
+
+databases:
+  - name: disaster-db
+    databaseName: disaster_db
+    user: disaster
+    plan: basic-256mb

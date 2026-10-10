@@ -1,0 +1,15 @@
+[
+  {
+    "id": "ACT-001", "incident_id": "INC-001", "resource_ids": ["BOAT-001", "TEAM-001"],
+    "description": "Evacuate residents from flooded houses in Zone A", "priority": "moderate", "status": "in_progress",
+    "rationale": ["40 residents may require evacuation"],
+    "assumptions": [],
+    "inputs_used": [{"label": "People affected", "value": "40", "provenance": "reported"}],
+    "created_at": {"minutes_ago": 80}, "approved_at": {"minutes_ago": 75}, "started_at": {"minutes_ago": 70},
+    "events": [
+      {"event": "created", "actor": "system", "at": {"minutes_ago": 80}},
+      {"event": "approved", "actor": "Coordinator (seed)", "comment": "Approved during initial response", "at": {"minutes_ago": 75}},
+      {"event": "started", "actor": "Coordinator (seed)", "at": {"minutes_ago": 70}}
+    ]
+  }
+]

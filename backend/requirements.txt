@@ -1,0 +1,37 @@
+# API
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.8
+pydantic-settings>=2.4
+python-dotenv>=1.0
+
+# Database + geospatial
+sqlalchemy>=2.0
+psycopg[binary]>=3.2
+geoalchemy2>=0.15
+shapely>=2.0
+
+# Data
+pandas>=2.2
+numpy>=1.26
+
+# External APIs
+httpx>=0.27
+
+# LLM (structured outputs via client.responses.parse)
+openai>=3.26
+
+# Agents
+langgraph>=0.2
+langchain-core>=0.3
+
+# Duplicate detection
+rapidfuzz>=3.9
+
+# Reports
+reportlab>=4.2
+
+# Testing
+pytest>=8.3
+pytest-asyncio>=0.24
+pypdf>=5.0            # reads generated situation-report PDFs in tests

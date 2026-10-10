@@ -1,0 +1,61 @@
+{
+  "id": "weather_timeline",
+  "title": "Weather worsens, then eases",
+  "description": "Rainfall and wind rise sharply over Zone C, then Zones A and B, before easing. Each worsening step must trigger reassessment of incidents in that zone and a weather_worsening alert.",
+  "test_cases": ["TC-07"],
+  "steps": [
+    {
+      "at_minute": 0, "kind": "weather", "zone": "Zone C",
+      "note": "Severe worsening over Zone C: wind crosses the 50 km/h threshold (+2 weather points).",
+      "condition": "Very heavy rain", "rainfall_mm_per_hr": 38, "wind_kph": 55, "temperature_c": 25,
+      "forecast_summary": "Very heavy rain and strong winds for the next 6 hours",
+      "forecast_hourly": [
+        {"hour": 1, "precipitation_mm": 36, "wind_kph": 55}, {"hour": 2, "precipitation_mm": 40, "wind_kph": 58},
+        {"hour": 3, "precipitation_mm": 38, "wind_kph": 56}, {"hour": 4, "precipitation_mm": 33, "wind_kph": 52},
+        {"hour": 5, "precipitation_mm": 28, "wind_kph": 48}, {"hour": 6, "precipitation_mm": 25, "wind_kph": 45}
+      ],
+      "severe_warning": true
+    },
+    {
+      "at_minute": 30, "kind": "weather", "zone": "Zone A",
+      "note": "Zone A worsens; INC-001 must be reassessed.",
+      "condition": "Very heavy rain", "rainfall_mm_per_hr": 30, "wind_kph": 52, "temperature_c": 25,
+      "forecast_summary": "Very heavy rain and strong winds for the next 6 hours",
+      "forecast_hourly": [
+        {"hour": 1, "precipitation_mm": 30, "wind_kph": 52}, {"hour": 2, "precipitation_mm": 31, "wind_kph": 53},
+        {"hour": 3, "precipitation_mm": 28, "wind_kph": 50}, {"hour": 4, "precipitation_mm": 24, "wind_kph": 47},
+        {"hour": 5, "precipitation_mm": 20, "wind_kph": 44}, {"hour": 6, "precipitation_mm": 17, "wind_kph": 40}
+      ],
+      "severe_warning": true
+    },
+    {
+      "at_minute": 30, "kind": "weather", "zone": "Zone B",
+      "note": "Zone B worsens; INC-002 (and INC-004) must be reassessed.",
+      "condition": "Very heavy rain", "rainfall_mm_per_hr": 29, "wind_kph": 51, "temperature_c": 25,
+      "forecast_summary": "Very heavy rain and strong winds for the next 6 hours",
+      "forecast_hourly": [
+        {"hour": 1, "precipitation_mm": 29, "wind_kph": 51}, {"hour": 2, "precipitation_mm": 30, "wind_kph": 52},
+        {"hour": 3, "precipitation_mm": 27, "wind_kph": 50}, {"hour": 4, "precipitation_mm": 23, "wind_kph": 46},
+        {"hour": 5, "precipitation_mm": 19, "wind_kph": 43}, {"hour": 6, "precipitation_mm": 16, "wind_kph": 39}
+      ],
+      "severe_warning": true
+    },
+    {
+      "at_minute": 120, "kind": "weather", "zone": "Zone C",
+      "note": "Easing: warning lifted, rain moderate. Scores may drop; no worsening alert expected.",
+      "condition": "Moderate rain", "rainfall_mm_per_hr": 6, "wind_kph": 22, "temperature_c": 26,
+      "forecast_summary": "Moderate rain easing to showers over the next 6 hours",
+      "forecast_hourly": [
+        {"hour": 1, "precipitation_mm": 6, "wind_kph": 22}, {"hour": 2, "precipitation_mm": 5, "wind_kph": 20},
+        {"hour": 3, "precipitation_mm": 4, "wind_kph": 18}, {"hour": 4, "precipitation_mm": 3, "wind_kph": 16},
+        {"hour": 5, "precipitation_mm": 2, "wind_kph": 15}, {"hour": 6, "precipitation_mm": 1, "wind_kph": 14}
+      ],
+      "severe_warning": false
+    }
+  ],
+  "expected": [
+    "Each worsening step creates a weather_worsening alert naming the zone",
+    "Incidents in the affected zone are reassessed; the Weather/escalation factor rises from 13 to 15 (wind >= 50 km/h)",
+    "The easing step lowers the weather factor and does not raise a worsening alert"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "source_reports",
+  "title": "Reports from five source types",
+  "description": "Five raw reports in different formats (free-text call, citizen message, structured field-team update, IoT sensor event, government alert). Two of them describe the same River Street flood in Zone D.",
+  "test_cases": ["TC-01", "TC-02"],
+  "setup": {
+    "roads": [
+      {
+        "id": "RD-D", "name": "River Street Approach", "serves_zone": "Zone D", "status": "partially_blocked", "provenance": "known",
+        "path": [{"lat": 13.04, "lng": 80.25}, {"lat": 13.055, "lng": 80.245}, {"lat": 13.065, "lng": 80.235}],
+        "updated_at": {"minutes_ago": 20},
+        "note": "Water on carriageway near the river bridge (traffic police)"
+      }
+    ]
+  },
+  "steps": [
+    {
+      "at_minute": 0, "kind": "report", "source": "emergency_call",
+      "note": "TC-01: new flood incident, free text only. Expect extraction of zone, ~25 people, evacuation + medical, road issue.",
+      "text": "Emergency call 09:42. Caller says flood water has entered ground-floor homes on River Street in Zone D. About 25 people, including several elderly residents, need help to evacuate. One woman has a leg injury. Cars cannot get through the street."
+    },
+    {
+      "at_minute": 10, "kind": "report", "source": "citizen_report",
+      "note": "TC-02: same event from a second source, vague wording, no number. Expect a pending duplicate link to the River Street incident, not a new independent incident.",
+      "text": "water flooding river street zone D!! lots of people stuck, old people need help, pls send boat"
+    },
+    {
+      "at_minute": 15, "kind": "report", "source": "field_team",
+      "note": "Structured field update. People count unknown -> must stay null. Road observation is 'reported', not 'known'.",
+      "payload": {
+        "team_id": "FT-07", "zone": "Zone B", "location": {"lat": 13.0362, "lng": 80.2075},
+        "observation": "Water level at canal bridge rising about 10 cm per hour",
+        "people_count": null, "needs": [],
+        "road_observations": [{"road_id": "RD-B", "observed_status": "partially_blocked"}]
+      }
+    },
+    {
+      "at_minute": 20, "kind": "report", "source": "iot_sensor",
+      "note": "Machine event with no people information. Expect low confidence and 'Verification Required' for threat to life.",
+      "payload": {
+        "sensor_id": "WL-C-03", "sensor_type": "water_level", "zone": "Zone C",
+        "location": {"lat": 12.981, "lng": 80.184},
+        "reading_m": 2.4, "alert_threshold_m": 1.8, "trend": "rising"
+      }
+    },
+    {
+      "at_minute": 25, "kind": "report", "source": "government_alert",
+      "note": "Authoritative area-wide warning. Should raise weather/escalation context, not create a rescue incident with invented numbers.",
+      "payload": {
+        "issuer": "District Disaster Management Authority", "alert_level": "red",
+        "areas": ["Zone C", "Zone D"],
+        "message": "Red alert: extremely heavy rainfall expected for the next 12 hours. Residents of low-lying areas should move to designated shelters."
+      }
+    }
+  ],
+  "expected": [
+    "River Street report normalized into a flood incident in Zone D with people_affected=25 (reported) and a factor breakdown",
+    "Citizen report linked to the River Street incident as potential_duplicate with status pending; nothing deleted",
+    "Field-team update keeps people_affected null and records RD-B observation as reported",
+    "IoT event produces low confidence and verification items, no invented people count"
+  ]
+}

@@ -1,0 +1,43 @@
+[
+  {
+    "id": "INC-001", "type": "flood", "title": "Residential flooding",
+    "description": "Flood water has entered approximately 20 houses in Zone A. Around 40 residents may require evacuation. The main access road is partially flooded.",
+    "zone": "Zone A", "location": {"lat": 13.0108, "lng": 80.227},
+    "reported_at": {"minutes_ago": 95}, "source": "emergency_call",
+    "people_affected": 40, "assistance_requested": ["evacuation"],
+    "infrastructure_issues": ["road_partially_flooded"], "threat_indicators": ["evacuation_needed"],
+    "confidence": "medium", "verification_status": "verified",
+    "field_provenance": {"location": "reported", "people_affected": "reported", "assistance_requested": "reported", "infrastructure_issues": "reported", "threat_indicators": "reported"}
+  },
+  {
+    "id": "INC-002", "type": "flood", "title": "People stranded",
+    "description": "12 people stranded on rooftops after water levels rose quickly near the canal.",
+    "zone": "Zone B", "location": {"lat": 13.035, "lng": 80.209},
+    "reported_at": {"minutes_ago": 60}, "source": "field_team",
+    "people_affected": 12, "assistance_requested": ["water_rescue"],
+    "infrastructure_issues": [], "threat_indicators": ["stranded", "water_rescue"],
+    "confidence": "high", "verification_status": "verified",
+    "field_provenance": {"location": "reported", "people_affected": "reported", "assistance_requested": "reported", "infrastructure_issues": "reported", "threat_indicators": "reported"}
+  },
+  {
+    "id": "INC-003", "type": "flood", "title": "Village access cut off",
+    "description": "Village in Zone C cut off by flood water. Around 75 residents potentially affected.",
+    "zone": "Zone C", "location": {"lat": 12.979, "lng": 80.181},
+    "reported_at": {"minutes_ago": 40}, "source": "government_alert",
+    "people_affected": 75, "assistance_requested": ["evacuation", "medical_check"],
+    "infrastructure_issues": ["main_road_closed"], "threat_indicators": ["isolated", "cut_off"],
+    "confidence": "medium", "verification_status": "pending",
+    "field_provenance": {"location": "reported", "people_affected": "reported", "assistance_requested": "reported", "infrastructure_issues": "known", "threat_indicators": "reported"}
+  },
+  {
+    "id": "INC-004", "type": "flood", "title": "Citizen report: people on roofs",
+    "description": "Saw maybe 10-15 people on roofs near the canal in Zone B, water rising.",
+    "zone": "Zone B", "location": {"lat": 13.0355, "lng": 80.2096},
+    "reported_at": {"minutes_ago": 55}, "source": "citizen_report",
+    "people_affected": null, "assistance_requested": ["water_rescue"],
+    "infrastructure_issues": [], "threat_indicators": ["stranded"],
+    "confidence": "low", "verification_status": "unverified",
+    "supporting_info": "Count given as a range (10-15); stored as unknown rather than guessed.",
+    "field_provenance": {"location": "reported", "assistance_requested": "reported", "threat_indicators": "reported"}
+  }
+]

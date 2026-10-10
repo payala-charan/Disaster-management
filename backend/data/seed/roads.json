@@ -1,0 +1,24 @@
+[
+  {
+    "id": "RD-A", "name": "Main Road to Zone A", "serves_zone": "Zone A", "status": "partially_blocked", "provenance": "known",
+    "path": [{"lat": 13.04, "lng": 80.25}, {"lat": 13.025, "lng": 80.24}, {"lat": 13.0108, "lng": 80.227}],
+    "updated_at": {"minutes_ago": 50}
+  },
+  {
+    "id": "RD-B", "name": "Main Road to Zone B", "serves_zone": "Zone B", "status": "open", "provenance": "known",
+    "path": [{"lat": 13.04, "lng": 80.25}, {"lat": 13.04, "lng": 80.23}, {"lat": 13.035, "lng": 80.209}],
+    "updated_at": {"minutes_ago": 45}
+  },
+  {
+    "id": "RD-C", "name": "Main Road to Zone C", "serves_zone": "Zone C", "status": "closed", "provenance": "known",
+    "path": [{"lat": 12.995, "lng": 80.255}, {"lat": 12.988, "lng": 80.215}, {"lat": 12.979, "lng": 80.181}],
+    "updated_at": {"minutes_ago": 25},
+    "note": "Closed due to flooding (traffic authority report)"
+  },
+  {
+    "id": "RD-C2", "name": "Riverside Link Road", "serves_zone": "Zone C", "status": "unknown", "provenance": "inferred",
+    "path": [{"lat": 13.005, "lng": 80.205}, {"lat": 12.992, "lng": 80.192}, {"lat": 12.979, "lng": 80.181}],
+    "updated_at": {"minutes_ago": 15},
+    "note": "Potential accessibility problem: low-lying road near river during heavy rain. Route verification required."
+  }
+]

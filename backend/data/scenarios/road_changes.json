@@ -1,0 +1,29 @@
+{
+  "id": "road_changes",
+  "title": "Road conditions change during the response",
+  "description": "The open road to Zone B closes after resources were recommended for INC-002; the AI-inferred Riverside Link Road is later confirmed by a field team; Zone A's road reopens.",
+  "test_cases": ["TC-05"],
+  "steps": [
+    {
+      "at_minute": 0, "kind": "road", "road_id": "RD-B", "status": "closed", "provenance": "known",
+      "road_note": "Closed by traffic police: canal overflow across the carriageway",
+      "note": "TC-05: the only known route used by the Zone B recommendation is now closed."
+    },
+    {
+      "at_minute": 20, "kind": "road", "road_id": "RD-C2", "status": "closed", "provenance": "known",
+      "road_note": "Field team confirmed: road submerged near the river",
+      "note": "An AI-inferred potential problem becomes a KNOWN closure only once a field team confirms it."
+    },
+    {
+      "at_minute": 60, "kind": "road", "road_id": "RD-A", "status": "open", "provenance": "known",
+      "road_note": "Water receded; road reopened by the traffic authority",
+      "note": "Improvement: access to Zone A becomes open; its access factor drops."
+    }
+  ],
+  "expected": [
+    "RD-B closure is recorded as a condition change with provenance 'known' and raises a route_blocked alert",
+    "Pending/approved actions that rely on road access to Zone B are marked superseded or flagged for reassessment",
+    "A new run produces an updated plan; ground vehicles are no longer recommended for Zone B",
+    "RD-C2 changes from inferred/unknown to known/closed; the UI shows the provenance change"
+  ]
+}

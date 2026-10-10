@@ -1,0 +1,28 @@
+{
+  "id": "shortage",
+  "title": "Rescue boat shortage",
+  "description": "Two boats go out of service and the Zone C people count rises, so the required number of boats far exceeds what is available. The system must report the exact deficit and an escalation note, and must not invent boats or helicopters.",
+  "test_cases": ["TC-04"],
+  "steps": [
+    {
+      "at_minute": 0, "kind": "resource", "resource_id": "BOAT-004", "status": "unavailable",
+      "reason": "Engine failure reported by crew", "expected_available_in_min": 180,
+      "note": "Reduces available boats."
+    },
+    {
+      "at_minute": 0, "kind": "resource", "resource_id": "BOAT-005", "status": "unavailable",
+      "reason": "Hull damage during previous deployment",
+      "note": "Reduces available boats further; no expected return time (stays unknown)."
+    },
+    {
+      "at_minute": 5, "kind": "incident_update", "incident_id": "INC-003",
+      "changes": {"people_affected": 120}, "provenance": "reported",
+      "note": "Revised count from the village headman by phone (reported, not verified)."
+    }
+  ],
+  "expected": [
+    "Shortage entry for rescue_boat with required, available and deficit computed by the engine (deficit = required - available)",
+    "Escalation note recommends requesting additional water-rescue capacity from district/state; no invented resources in any plan",
+    "BOAT-004 shows expected_available_at about 3 h ahead; BOAT-005 shows none"
+  ]
+}

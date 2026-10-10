@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+html, body, #root { height: 100%; }
+
+/* OpenStreetMap tiles darkened to match the ops console (no API key needed) */
+.dark-tiles {
+  filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9) saturate(0.6);
+}

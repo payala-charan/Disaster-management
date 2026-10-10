@@ -1,0 +1,32 @@
+[
+  {
+    "zone": "Zone A", "condition": "Heavy rain", "rainfall_mm_per_hr": 18, "wind_kph": 32, "temperature_c": 26,
+    "forecast_summary": "Continued heavy rainfall for next 6 hours",
+    "forecast_hourly": [
+      {"hour": 1, "precipitation_mm": 17, "wind_kph": 32}, {"hour": 2, "precipitation_mm": 18, "wind_kph": 33},
+      {"hour": 3, "precipitation_mm": 16, "wind_kph": 31}, {"hour": 4, "precipitation_mm": 15, "wind_kph": 30},
+      {"hour": 5, "precipitation_mm": 13, "wind_kph": 28}, {"hour": 6, "precipitation_mm": 12, "wind_kph": 27}
+    ],
+    "severe_warning": true, "fetched_at": {"minutes_ago": 8}
+  },
+  {
+    "zone": "Zone B", "condition": "Heavy rain", "rainfall_mm_per_hr": 18, "wind_kph": 32, "temperature_c": 26,
+    "forecast_summary": "Continued heavy rainfall for next 6 hours",
+    "forecast_hourly": [
+      {"hour": 1, "precipitation_mm": 17, "wind_kph": 32}, {"hour": 2, "precipitation_mm": 18, "wind_kph": 33},
+      {"hour": 3, "precipitation_mm": 16, "wind_kph": 31}, {"hour": 4, "precipitation_mm": 15, "wind_kph": 30},
+      {"hour": 5, "precipitation_mm": 13, "wind_kph": 28}, {"hour": 6, "precipitation_mm": 12, "wind_kph": 27}
+    ],
+    "severe_warning": true, "fetched_at": {"minutes_ago": 8}
+  },
+  {
+    "zone": "Zone C", "condition": "Heavy rain", "rainfall_mm_per_hr": 24, "wind_kph": 32, "temperature_c": 26,
+    "forecast_summary": "Continued heavy rainfall for next 6 hours",
+    "forecast_hourly": [
+      {"hour": 1, "precipitation_mm": 23, "wind_kph": 32}, {"hour": 2, "precipitation_mm": 25, "wind_kph": 34},
+      {"hour": 3, "precipitation_mm": 24, "wind_kph": 33}, {"hour": 4, "precipitation_mm": 21, "wind_kph": 31},
+      {"hour": 5, "precipitation_mm": 19, "wind_kph": 29}, {"hour": 6, "precipitation_mm": 18, "wind_kph": 28}
+    ],
+    "severe_warning": true, "fetched_at": {"minutes_ago": 8}
+  }
+]

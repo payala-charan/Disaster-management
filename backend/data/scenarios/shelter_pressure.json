@@ -1,0 +1,16 @@
+{
+  "id": "shelter_pressure",
+  "title": "Shelter A fills up",
+  "description": "Evacuees arrive at Shelter A until it is full. An alert fires when utilization reaches the configured threshold (SHELTER_ALERT_THRESHOLD, default 0.85).",
+  "test_cases": ["TC-06"],
+  "steps": [
+    {"at_minute": 0, "kind": "shelter", "shelter_id": "SHL-A", "current_occupancy": 168, "note": "84%: just below the threshold, no alert."},
+    {"at_minute": 15, "kind": "shelter", "shelter_id": "SHL-A", "current_occupancy": 172, "note": "86%: crosses 85%, shelter_capacity alert expected."},
+    {"at_minute": 40, "kind": "shelter", "shelter_id": "SHL-A", "current_occupancy": 200, "status": "full", "note": "Full: new evacuees must be directed to the nearest shelter with capacity."}
+  ],
+  "expected": [
+    "No alert at 168/200 (0.84)",
+    "shelter_capacity alert at 172/200 (0.86) naming SHL-A",
+    "At 200/200 the shelter shows available 0 and plans route evacuees to the nearest shelter with capacity"
+  ]
+}

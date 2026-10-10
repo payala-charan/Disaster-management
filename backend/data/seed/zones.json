@@ -1,0 +1,14 @@
+{
+  "zones": [
+    {"name": "Zone A", "center": {"lat": 13.0108, "lng": 80.227}, "description": "Residential area near the main drainage channel", "aliases": ["zone a", "sector a"]},
+    {"name": "Zone B", "center": {"lat": 13.035, "lng": 80.209}, "description": "Low-lying neighbourhood along the canal", "aliases": ["zone b", "sector b", "canal area"]},
+    {"name": "Zone C", "center": {"lat": 12.979, "lng": 80.181}, "description": "Village on the river plain, reachable by the Main Road to Zone C", "aliases": ["zone c", "sector c", "riverside village"]},
+    {"name": "Zone D", "center": {"lat": 13.065, "lng": 80.235}, "description": "Riverside lowland settlement (River Street). Used by simulation scenarios.", "aliases": ["zone d", "river street"]},
+    {"name": "Zone E", "center": {"lat": 12.95, "lng": 80.14}, "description": "Hillside settlement on the Hill Road. Used by simulation scenarios.", "aliases": ["zone e", "hill road", "hillside"]},
+    {"name": "Zone F", "center": {"lat": 13.083, "lng": 80.275}, "description": "Dense commercial district around Market Road. Used by simulation scenarios.", "aliases": ["zone f", "market road", "commercial district"]}
+  ],
+  "bases": [
+    {"name": "Response Center 1", "location": {"lat": 13.04, "lng": 80.25}},
+    {"name": "Response Center 2", "location": {"lat": 12.995, "lng": 80.255}}
+  ]
+}

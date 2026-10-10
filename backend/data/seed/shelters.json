@@ -1,0 +1,5 @@
+[
+  {"id": "SHL-A", "name": "Shelter A", "location": {"lat": 13.02, "lng": 80.235}, "capacity": 200, "current_occupancy": 160, "status": "open"},
+  {"id": "SHL-B", "name": "Shelter B", "location": {"lat": 13.045, "lng": 80.22}, "capacity": 150, "current_occupancy": 60, "status": "open"},
+  {"id": "SHL-C", "name": "Shelter C", "location": {"lat": 13.005, "lng": 80.205}, "capacity": 300, "current_occupancy": 110, "status": "open"}
+]

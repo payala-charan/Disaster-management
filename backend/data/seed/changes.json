@@ -1,0 +1,5 @@
+[
+  {"id": "CHG-001", "entity": "Main Road to Zone C", "entity_id": "RD-C", "field": "status", "old_value": "partially_blocked", "new_value": "closed", "changed_at": {"minutes_ago": 25}, "provenance": "known"},
+  {"id": "CHG-002", "entity": "INC-003", "entity_id": "INC-003", "field": "people_affected", "old_value": "40", "new_value": "75", "changed_at": {"minutes_ago": 12}, "provenance": "reported"},
+  {"id": "CHG-003", "entity": "Weather forecast", "entity_id": null, "field": "rainfall_outlook", "old_value": "moderate", "new_value": "heavy (6 h)", "changed_at": {"minutes_ago": 8}, "provenance": "known"}
+]

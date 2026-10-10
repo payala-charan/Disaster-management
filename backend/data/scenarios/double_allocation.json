@@ -1,0 +1,16 @@
+{
+  "id": "double_allocation",
+  "title": "One boat, two critical incidents",
+  "description": "Only one rescue boat remains available while both Zone B and Zone C need boats. The engine must assign it to at most one incident per plan, and the database must reject a second approval that tries to reserve it again.",
+  "test_cases": ["TC-08"],
+  "steps": [
+    {"at_minute": 0, "kind": "resource", "resource_id": "BOAT-002", "status": "unavailable", "reason": "Crew unavailable", "note": "Leave a single available boat."},
+    {"at_minute": 0, "kind": "resource", "resource_id": "BOAT-003", "status": "unavailable", "reason": "Crew unavailable", "note": "Leave a single available boat."},
+    {"at_minute": 0, "kind": "resource", "resource_id": "BOAT-004", "status": "unavailable", "reason": "Engine failure", "note": "Leave a single available boat (BOAT-005)."}
+  ],
+  "expected": [
+    "Within every plan, BOAT-005 appears at most once",
+    "The other incident receives an unmet requirement and a shortage entry",
+    "Approving a second action that includes BOAT-005 returns HTTP 409 and leaves exactly one active assignment"
+  ]
+}

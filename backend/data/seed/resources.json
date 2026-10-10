@@ -1,0 +1,354 @@
+[
+  {
+    "id": "BOAT-001",
+    "type": "rescue_boat",
+    "name": "Rescue Boat 1",
+    "base_name": "Response Center 1",
+    "location": {
+      "lat": 13.0108,
+      "lng": 80.227
+    },
+    "status": "deployed",
+    "capacity": 8,
+    "capabilities": [
+      "water_rescue"
+    ]
+  },
+  {
+    "id": "BOAT-002",
+    "type": "rescue_boat",
+    "name": "Rescue Boat 2",
+    "base_name": "Response Center 1",
+    "location": {
+      "lat": 13.0408,
+      "lng": 80.2508
+    },
+    "status": "available",
+    "capacity": 8,
+    "capabilities": [
+      "water_rescue"
+    ]
+  },
+  {
+    "id": "BOAT-003",
+    "type": "rescue_boat",
+    "name": "Rescue Boat 3",
+    "base_name": "Response Center 1",
+    "location": {
+      "lat": 13.0416,
+      "lng": 80.2516
+    },
+    "status": "available",
+    "capacity": 8,
+    "capabilities": [
+      "water_rescue"
+    ]
+  },
+  {
+    "id": "BOAT-004",
+    "type": "rescue_boat",
+    "name": "Rescue Boat 4",
+    "base_name": "Response Center 1",
+    "location": {
+      "lat": 13.0424,
+      "lng": 80.2524
+    },
+    "status": "available",
+    "capacity": 8,
+    "capabilities": [
+      "water_rescue"
+    ]
+  },
+  {
+    "id": "BOAT-005",
+    "type": "rescue_boat",
+    "name": "Rescue Boat 5",
+    "base_name": "Response Center 1",
+    "location": {
+      "lat": 13.0432,
+      "lng": 80.2532
+    },
+    "status": "available",
+    "capacity": 8,
+    "capabilities": [
+      "water_rescue"
+    ]
+  },
+  {
+    "id": "TEAM-001",
+    "type": "rescue_team",
+    "name": "Rescue Team 1",
+    "base_name": "Response Center 1",
+    "location": {
+      "lat": 13.0108,
+      "lng": 80.227
+    },
+    "status": "deployed",
+    "capacity": 6,
+    "capabilities": [
+      "evacuation",
+      "water_rescue"
+    ]
+  },
+  {
+    "id": "TEAM-002",
+    "type": "rescue_team",
+    "name": "Rescue Team 2",
+    "base_name": "Response Center 1",
+    "location": {
+      "lat": 13.0408,
+      "lng": 80.2508
+    },
+    "status": "available",
+    "capacity": 6,
+    "capabilities": [
+      "evacuation",
+      "water_rescue"
+    ]
+  },
+  {
+    "id": "TEAM-003",
+    "type": "rescue_team",
+    "name": "Rescue Team 3",
+    "base_name": "Response Center 1",
+    "location": {
+      "lat": 13.0416,
+      "lng": 80.2516
+    },
+    "status": "available",
+    "capacity": 6,
+    "capabilities": [
+      "evacuation",
+      "water_rescue"
+    ]
+  },
+  {
+    "id": "TEAM-004",
+    "type": "rescue_team",
+    "name": "Rescue Team 4",
+    "base_name": "Response Center 1",
+    "location": {
+      "lat": 13.0424,
+      "lng": 80.2524
+    },
+    "status": "available",
+    "capacity": 6,
+    "capabilities": [
+      "evacuation",
+      "water_rescue"
+    ]
+  },
+  {
+    "id": "AMB-001",
+    "type": "ambulance",
+    "name": "Ambulance 1",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.995,
+      "lng": 80.255
+    },
+    "status": "available",
+    "capacity": 2,
+    "capabilities": [
+      "medical_transport"
+    ]
+  },
+  {
+    "id": "AMB-002",
+    "type": "ambulance",
+    "name": "Ambulance 2",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.9958,
+      "lng": 80.2558
+    },
+    "status": "available",
+    "capacity": 2,
+    "capabilities": [
+      "medical_transport"
+    ]
+  },
+  {
+    "id": "AMB-003",
+    "type": "ambulance",
+    "name": "Ambulance 3",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.9966,
+      "lng": 80.2566
+    },
+    "status": "available",
+    "capacity": 2,
+    "capabilities": [
+      "medical_transport"
+    ]
+  },
+  {
+    "id": "AMB-004",
+    "type": "ambulance",
+    "name": "Ambulance 4",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.9974,
+      "lng": 80.2574
+    },
+    "status": "available",
+    "capacity": 2,
+    "capabilities": [
+      "medical_transport"
+    ]
+  },
+  {
+    "id": "AMB-005",
+    "type": "ambulance",
+    "name": "Ambulance 5",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.9982,
+      "lng": 80.2582
+    },
+    "status": "available",
+    "capacity": 2,
+    "capabilities": [
+      "medical_transport"
+    ]
+  },
+  {
+    "id": "AMB-006",
+    "type": "ambulance",
+    "name": "Ambulance 6",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.999,
+      "lng": 80.259
+    },
+    "status": "returning",
+    "capacity": 2,
+    "capabilities": [
+      "medical_transport"
+    ],
+    "expected_available_at": {
+      "minutes_ahead": 30
+    }
+  },
+  {
+    "id": "VEH-001",
+    "type": "emergency_vehicle",
+    "name": "Emergency Vehicle 1",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.995,
+      "lng": 80.255
+    },
+    "status": "available",
+    "capacity": 10,
+    "capabilities": [
+      "road_transport"
+    ]
+  },
+  {
+    "id": "VEH-002",
+    "type": "emergency_vehicle",
+    "name": "Emergency Vehicle 2",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.9958,
+      "lng": 80.2558
+    },
+    "status": "available",
+    "capacity": 10,
+    "capabilities": [
+      "road_transport"
+    ]
+  },
+  {
+    "id": "VEH-003",
+    "type": "emergency_vehicle",
+    "name": "Emergency Vehicle 3",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.9966,
+      "lng": 80.2566
+    },
+    "status": "available",
+    "capacity": 10,
+    "capabilities": [
+      "road_transport"
+    ]
+  },
+  {
+    "id": "VEH-004",
+    "type": "emergency_vehicle",
+    "name": "Emergency Vehicle 4",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.9974,
+      "lng": 80.2574
+    },
+    "status": "available",
+    "capacity": 10,
+    "capabilities": [
+      "road_transport"
+    ]
+  },
+  {
+    "id": "VEH-005",
+    "type": "emergency_vehicle",
+    "name": "Emergency Vehicle 5",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.9982,
+      "lng": 80.2582
+    },
+    "status": "available",
+    "capacity": 10,
+    "capabilities": [
+      "road_transport"
+    ]
+  },
+  {
+    "id": "VEH-006",
+    "type": "emergency_vehicle",
+    "name": "Emergency Vehicle 6",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.999,
+      "lng": 80.259
+    },
+    "status": "available",
+    "capacity": 10,
+    "capabilities": [
+      "road_transport"
+    ]
+  },
+  {
+    "id": "VEH-007",
+    "type": "emergency_vehicle",
+    "name": "Emergency Vehicle 7",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 12.9998,
+      "lng": 80.2598
+    },
+    "status": "available",
+    "capacity": 10,
+    "capabilities": [
+      "road_transport"
+    ]
+  },
+  {
+    "id": "VEH-008",
+    "type": "emergency_vehicle",
+    "name": "Emergency Vehicle 8",
+    "base_name": "Response Center 2",
+    "location": {
+      "lat": 13.0006,
+      "lng": 80.2606
+    },
+    "status": "unavailable",
+    "capacity": 10,
+    "capabilities": [
+      "road_transport"
+    ]
+  }
+]

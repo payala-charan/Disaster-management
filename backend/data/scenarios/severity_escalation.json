@@ -1,0 +1,23 @@
+{
+  "id": "severity_escalation",
+  "title": "Zone A escalates from evacuation to rescue",
+  "description": "New field information about INC-001 (more people, injuries) and a full road closure push it up the priority scale.",
+  "test_cases": ["TC-07"],
+  "steps": [
+    {
+      "at_minute": 0, "kind": "incident_update", "incident_id": "INC-001",
+      "changes": {"people_affected": 65, "threat_indicators": ["evacuation_needed", "injured"]}, "provenance": "reported",
+      "note": "Field team reports more residents and two injured people."
+    },
+    {
+      "at_minute": 10, "kind": "road", "road_id": "RD-A", "status": "closed", "provenance": "known",
+      "road_note": "Main road fully flooded (traffic authority)",
+      "note": "Access factor rises to the maximum."
+    }
+  ],
+  "expected": [
+    "INC-001 is reassessed after each step; threat factor rises (injured -> 22) and people factor rises (65 -> 20)",
+    "A severity_increase alert is raised when the level goes up",
+    "Previously approved ground-vehicle actions for Zone A are flagged for reassessment after the closure"
+  ]
+}

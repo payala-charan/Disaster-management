@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgis/postgis:17-3.5
+    # The official PostGIS image has no arm64 build; Docker Desktop runs it under Rosetta on Apple Silicon.
+    platform: linux/amd64
+    container_name: disaster-db
+    environment:
+      POSTGRES_USER: disaster
+      POSTGRES_PASSWORD: disaster
+      POSTGRES_DB: disaster_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U disaster -d disaster_db"]
+      interval: 5s
+      retries: 10
+
+volumes:
+  pgdata:
